@@ -16,14 +16,12 @@ public class Panne {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long panneId;
-    private String description;
+    private String name;
     @Enumerated(EnumType.STRING)
 
 
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateurId")
-    private Utilisateur utilisateur;
+
 
     @OneToMany(mappedBy = "panne")
     private List<HistoriquePanne> historiques;
