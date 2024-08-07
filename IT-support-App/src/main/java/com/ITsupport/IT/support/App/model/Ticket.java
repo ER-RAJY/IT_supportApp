@@ -24,7 +24,11 @@ public class Ticket {
     private Utilisateur utilisateur;
 
     @ManyToOne
+    @JoinColumn(name = "technicien_id")
+    private Technicien technicien;
+
+    @ManyToOne
     @JoinColumn(name = "equipementId")
-    private Equipment equipment; // Change from 'equipments' to 'equipment'
+    private Equipment equipment;
 
 }
