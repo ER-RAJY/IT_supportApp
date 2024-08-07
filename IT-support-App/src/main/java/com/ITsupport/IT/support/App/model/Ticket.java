@@ -38,5 +38,4 @@ public class Ticket {
     @JoinColumn(name = "panneId")
     private Panne panne;
 
-
 }
