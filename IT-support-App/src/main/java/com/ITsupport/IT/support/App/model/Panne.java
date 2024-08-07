@@ -17,11 +17,10 @@ public class Panne {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long panneId;
     private String name;
-    @Enumerated(EnumType.STRING)
 
 
-
-
+    @OneToMany(mappedBy = "panne", cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
 
     @OneToMany(mappedBy = "panne")
     private List<HistoriquePanne> historiques;
