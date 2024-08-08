@@ -23,6 +23,7 @@ public class TicketServiceImpl implements TicketService {
         return ticketRepository.save(ticket);
     }
 
+
     @Override
     public Ticket editTicket(Long id, Ticket ticket) {
 
@@ -35,5 +36,13 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public void deleteTicket(Long id) {
 
+    }
+
+    @Override
+    public Ticket linkTicket(Long id, Ticket ticket) {
+        ticketRepository.findById(id);
+        Ticket editTicket = new Ticket();
+        editTicket.setTechnicien(ticket.getTechnicien());
+        return ticketRepository.save(editTicket);
     }
 }

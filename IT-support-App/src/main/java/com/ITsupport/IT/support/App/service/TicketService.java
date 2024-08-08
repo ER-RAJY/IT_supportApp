@@ -9,4 +9,5 @@ public interface TicketService {
   Ticket addTeckit(Ticket ticket);
    Ticket editTicket(Long id , Ticket ticket);
    void deleteTicket(Long id);
+    Ticket linkTicket(Long id , Ticket ticket);
 }
