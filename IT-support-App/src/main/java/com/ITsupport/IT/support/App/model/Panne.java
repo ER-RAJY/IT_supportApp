@@ -12,7 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Panne {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long panneId;
@@ -22,6 +21,4 @@ public class Panne {
     @OneToMany(mappedBy = "panne", cascade = CascadeType.ALL)
     private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "panne")
-    private List<HistoriquePanne> historiques;
 }
