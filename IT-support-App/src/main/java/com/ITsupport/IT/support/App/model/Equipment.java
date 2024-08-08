@@ -25,8 +25,6 @@ public class Equipment {
     private EquipmentStatut statut;
 
 
-    @OneToMany(mappedBy = "equipment")
-    private List<HistoriquePanne> historiques;
 
     @OneToMany(mappedBy = "equipment")
     private List<Ticket> tickets;
