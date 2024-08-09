@@ -23,13 +23,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorize -> authorize
-                                .anyRequest().permitAll()
-//                                .requestMatchers("/auth/authenticate","/auth/register/admin").permitAll()
-//                                .requestMatchers("/auth/tickets/add", "/auth/tickets/all").hasAuthority("USER")
-//                                .requestMatchers("/auth/equipements/**", "/auth/panne/**","/auth/tickets/assigner/**","/auth/register/**").hasAuthority("ADMIN")
-//                                .requestMatchers("/auth/tickets/all").hasAuthority("TECHNICIEN")
-//                                .anyRequest()
-//                                .authenticated()
+
+                                .requestMatchers("/auth/authenticate","/auth/register/admin").permitAll()
+                                .requestMatchers("/auth/tickets/add", "/auth/tickets/byUtilisateur/**","/auth/tickets/editditDescrption").hasAuthority("USER")
+                                .requestMatchers("/auth/equipements/**","/auth/panne/auth/register/**").hasAuthority("ADMIN")
+                                .requestMatchers("/auth/tickets/byTechnicien","/auth/tickets/editStatus").hasAuthority("TECHNICIEN")
+                                .anyRequest()
+                                .authenticated()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
