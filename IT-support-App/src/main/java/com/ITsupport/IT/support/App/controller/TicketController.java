@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tickets")
+@RequestMapping("/auth/tickets")
 public class TicketController {
 
     @Autowired
@@ -18,6 +18,7 @@ public class TicketController {
     public List<Ticket> getAllTickets() {
         return ticketService.getAll();
     }
+
 
     @PostMapping("/add")
     public Ticket addTeckit(@RequestBody Ticket ticket) {
@@ -29,12 +30,12 @@ public class TicketController {
         return ticketService.editTicket(id, ticket);
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public void deleteTicket(@PathVariable Long id) {
         ticketService.deleteTicket(id);
     }
 
-    @PutMapping("/link/{id}")
+    @PutMapping("/assigner/{id}")
     public Ticket linkTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
         return ticketService.linkTicket(id, ticket);
     }
