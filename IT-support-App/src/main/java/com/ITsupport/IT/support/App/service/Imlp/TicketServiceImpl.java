@@ -1,15 +1,13 @@
 package com.ITsupport.IT.support.App.service.Imlp;
 
-import com.ITsupport.IT.support.App.model.Panne;
-import com.ITsupport.IT.support.App.model.Personne;
-import com.ITsupport.IT.support.App.model.Ticket;
-import com.ITsupport.IT.support.App.model.Utilisateur;
+import com.ITsupport.IT.support.App.model.*;
 import com.ITsupport.IT.support.App.repository.PersonneRepository;
 import com.ITsupport.IT.support.App.repository.TicketRepository;
 import com.ITsupport.IT.support.App.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class TicketServiceImpl implements TicketService {
@@ -29,6 +27,7 @@ public class TicketServiceImpl implements TicketService {
         Utilisateur user = (Utilisateur) personneRepository.findById(ticket.getUtilisateur().getId())
                 .orElseThrow(() -> new RuntimeException("Utilisateur not found"));
         ticket.setUtilisateur(user);
+        ticket.setDateCreationTicket(LocalDate.now());
         return ticketRepository.save(ticket);
     }
 
@@ -48,13 +47,16 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket linkTicket(Long id, Ticket updatedTicket) {
-        Ticket existingTicket = ticketRepository.findById(id)
+    public Ticket linkTicket(Long id, Ticket ticket) {
+
+        Ticket assignerTicked = ticketRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Ticket not found"));
 
-        existingTicket.setTechnicien(updatedTicket.getTechnicien());
-        // Update any other relevant fields of the existingTicket object
+        Technicien technicien = (Technicien) personneRepository.findById(ticket.getTechnicien().getId())
+                .orElseThrow(() -> new RuntimeException("Technicien not found"));
+        assignerTicked.setTechnicien(technicien);
 
-        return ticketRepository.save(existingTicket);
+
+        return ticketRepository.save(assignerTicked);
     }
 }

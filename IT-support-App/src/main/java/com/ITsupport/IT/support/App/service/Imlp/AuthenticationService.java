@@ -1,8 +1,5 @@
 package com.ITsupport.IT.support.App.service.Imlp;
 
-
-
-
 import com.ITsupport.IT.support.App.auth.AuthenticationRequest;
 import com.ITsupport.IT.support.App.auth.AuthenticationResponse;
 import com.ITsupport.IT.support.App.auth.RegisterRequest;
@@ -16,6 +13,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +38,6 @@ public class AuthenticationService {
                 .token(jwtToken)
                 .build();
     }
-
     public AuthenticationResponse registerAdmin(RegisterRequest request) {
 
         var admin = new Admin();
