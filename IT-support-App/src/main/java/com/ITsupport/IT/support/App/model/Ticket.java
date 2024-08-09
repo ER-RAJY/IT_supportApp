@@ -21,6 +21,7 @@ public class Ticket {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long ticketId;
     private String description;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDate dateCreationTicket;
     private EtatTicket statut;
 
