@@ -19,14 +19,13 @@ public class TicketController {
         return ticketService.getAll();
     }
 
-
     @PostMapping("/add")
-    public Ticket addTeckit(@RequestBody Ticket ticket) {
+    public Ticket addTicket(@RequestBody Ticket ticket) {
         return ticketService.addTeckit(ticket);
     }
 
-    @PutMapping("/edit/{id}")
-    public Ticket editTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
+    @PutMapping("/editditDescrption/{id}")
+    public Ticket editDescrptionTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
         return ticketService.editTicket(id, ticket);
     }
 
@@ -38,5 +37,20 @@ public class TicketController {
     @PutMapping("/assigner/{id}")
     public Ticket linkTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
         return ticketService.linkTicket(id, ticket);
+    }
+
+    @PutMapping("/editStatus/{id}")
+    public Ticket editStatusTicket(@PathVariable Long id, @RequestBody Ticket ticket) {
+        return ticketService.editStatusTicket(id, ticket);
+    }
+
+    @GetMapping("/byTechnicien/{id}")
+    public List<Ticket> findByTechnicien(@PathVariable Long id) {
+        return ticketService.findByTechnicien(id);
+    }
+
+    @GetMapping("/byUtilisateur/{id}")
+    public List<Ticket> findByUtilisateur(@PathVariable Long id) {
+        return ticketService.findByUtilisateur(id);
     }
 }

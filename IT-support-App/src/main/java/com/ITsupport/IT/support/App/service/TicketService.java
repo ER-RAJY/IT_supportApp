@@ -10,4 +10,8 @@ public interface TicketService {
    Ticket editTicket(Long id , Ticket ticket);
    void deleteTicket(Long id);
     Ticket linkTicket(Long id , Ticket ticket);
+    Ticket editStatusTicket(Long id ,Ticket ticket);
+    List<Ticket> findByTechnicien(Long id);
+    List<Ticket> findByUtilisateur(Long id);
+
 }

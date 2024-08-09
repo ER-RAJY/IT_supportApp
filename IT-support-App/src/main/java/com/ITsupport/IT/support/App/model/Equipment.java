@@ -1,6 +1,7 @@
 package com.ITsupport.IT.support.App.model;
 
 import com.ITsupport.IT.support.App.model.enums.EquipmentStatut;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Equipment {
 
 
     @OneToMany(mappedBy = "equipment")
+    @JsonIgnore
     private List<Ticket> tickets;
 
 
