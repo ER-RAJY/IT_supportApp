@@ -1,5 +1,6 @@
 package com.ITsupport.IT.support.App.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,7 @@ public class Panne {
 
 
     @OneToMany(mappedBy = "panne", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Ticket> tickets;
 
 }
