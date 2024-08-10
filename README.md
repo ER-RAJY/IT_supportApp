@@ -6,7 +6,7 @@ En tant que développeur full stack Java/Angular dans la société ITSolutions, 
 ## Technologies Utilisées
 - **Backend**: Spring Boot, Spring Data JPA, Spring Security
 - **Frontend**: Angular 16
-- **Base de données**: PostgreSQL / MySQL
+- **Base de données**: PostgreSQL 
 - **Test unitaire**: JUnit
 - **Conteneurisation**: Docker
 - **JDK**: 21
