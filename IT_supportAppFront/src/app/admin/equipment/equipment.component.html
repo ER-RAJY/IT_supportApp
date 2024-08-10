@@ -1,0 +1,29 @@
+<!-- equipment.component.html -->
+<div class="p-6">
+  <h1 class="text-3xl font-bold mb-6">Equipements</h1>
+  <div *ngIf="equipements.length === 0" class="text-center text-gray-500">
+    <p>No equipements available.</p>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
+      <thead class="bg-gray-100 border-b border-gray-200">
+      <tr>
+        <th class="py-3 px-4 text-left text-gray-600">Image</th>
+        <th class="py-3 px-4 text-left text-gray-600">Name</th>
+        <th class="py-3 px-4 text-left text-gray-600">Description</th>
+        <th class="py-3 px-4 text-left text-gray-600">Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let equipement of equipements" class="border-b border-gray-200">
+        <td class="py-3 px-4">
+          <img [src]="equipement.UrlImg" [alt]="equipement.name" class="w-16 h-16 object-cover rounded"/>
+        </td>
+        <td class="py-3 px-4">{{ equipement.name }}</td>
+        <td class="py-3 px-4">{{ equipement.description }}</td>
+        <td class="py-3 px-4 text-center">{{ equipement.statut }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

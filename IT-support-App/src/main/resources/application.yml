@@ -1,10 +1,12 @@
 Spring:
   datasource:
-    url: jdbc:postgresql://postgresS:5432/support
+    spring:
+      datasource:
+        url=jdbc:postgresql://postgresS:5432/support?createIfNotExists=true:
+    url: jdbc:postgresql://localhost:5432/IT-support-App
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update

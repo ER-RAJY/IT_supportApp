@@ -9,6 +9,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auth/equipements")
+@CrossOrigin(origins = "http://localhost:4200/")
+
 public class EquuipmentsCotroller {
 
      @Autowired
