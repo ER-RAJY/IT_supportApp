@@ -1,0 +1,68 @@
+<app-nav-bar></app-nav-bar>
+<app-side-bar></app-side-bar>
+<div class="sm:ml-64">
+
+  <div class="p-0  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <!-- Users Section -->
+    <div class="p-6 bg-gray-50">
+      <h1 class="text-3xl font-bold mb-6 text-gray-800">Users</h1>
+
+      <!-- Button for adding a new User -->
+      <button (click)="showAddForm = !showAddForm" class="mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        {{ showAddForm ? 'Cancel' : 'Add User' }}
+      </button>
+
+      <!-- Form for adding a new User -->
+      <div *ngIf="showAddForm" class="mb-6">
+        <form (ngSubmit)="addUser()" #userForm="ngForm">
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+            <input id="name" name="name" [(ngModel)]="newUser.nom" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm" />
+          </div>
+          <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input id="email" name="email" [(ngModel)]="newUser.email" required type="email" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm" />
+          </div>
+          <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input id="password" name="password" [(ngModel)]="newUser.password" required type="password" class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm" />
+          </div>
+          <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add</button>
+        </form>
+      </div>
+
+      <!-- Display message if no users are available -->
+      <div *ngIf="users.length === 0" class="text-center text-gray-500 py-8">
+        <p class="text-lg">{{ errorMessage || 'No users available.' }}</p>
+      </div>
+
+      <!-- Table for displaying users -->
+      <div *ngIf="users.length > 0" class="overflow-x-auto shadow-lg rounded-lg">
+        <table class="min-w-full bg-white border border-gray-200">
+          <thead class="bg-gray-100 border-b border-gray-200">
+          <tr>
+            <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">User ID</th>
+            <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Name</th>
+            <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Email</th>
+            <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users" class="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+            <td class="py-4 px-4 font-medium text-gray-700">{{ user.id }}</td>
+            <td class="py-4 px-4 text-gray-600">{{ user.nom }}</td>
+            <td class="py-4 px-4 text-gray-600">{{ user.email }}</td>
+            <td class="py-4 px-4 text-center">
+              <!-- Edit button -->
+              <button class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+              <!-- Delete button -->
+              <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2">Delete</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
