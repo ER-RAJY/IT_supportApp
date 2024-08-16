@@ -7,6 +7,8 @@ import com.ITsupport.IT.support.App.auth.RegisterRequest;
 import com.ITsupport.IT.support.App.service.Imlp.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,6 +25,10 @@ public class AuthenticationController {
             @RequestBody RegisterRequest request
     ) {
         return ResponseEntity.ok(authService.register(request));
+    }
+    @GetMapping("/currentUser")
+    public UserDetails getCurrentUser() {
+        return (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
     @PostMapping("/register/admin")

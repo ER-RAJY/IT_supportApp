@@ -9,27 +9,28 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auth/panne")
+@CrossOrigin("*")
 public class PanneController {
     @Autowired
     PanneService panneService;
 
     @GetMapping("/all")
-    public List<Panne> getAll(){
+    public List<Panne> getAll() {
         return panneService.getAll();
     }
 
     @PostMapping("/add")
-    public Panne addPanne(@RequestBody Panne panne){
+    public Panne addPanne(@RequestBody Panne panne) {
         return panneService.addPanne(panne);
     }
 
     @PutMapping("/edit/{id}")
-    public Panne addEdit(@PathVariable Long id,@RequestBody Panne panne){
-        return panneService.editPanne(id,panne);
+    public Panne addEdit(@PathVariable Long id, @RequestBody Panne panne) {
+        return panneService.editPanne(id, panne);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deletePanne(@PathVariable Long id){
+    public void deletePanne(@PathVariable Long id) {
         panneService.deletePanne(id);
     }
 

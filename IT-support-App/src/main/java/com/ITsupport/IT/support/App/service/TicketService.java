@@ -1,6 +1,7 @@
 package com.ITsupport.IT.support.App.service;
 
 import com.ITsupport.IT.support.App.model.Ticket;
+import com.ITsupport.IT.support.App.model.enums.EquipmentStatut;
 
 import java.util.List;
 
@@ -13,5 +14,6 @@ public interface TicketService {
     Ticket editStatusTicket(Long id ,Ticket ticket);
     List<Ticket> findByTechnicien(Long id);
     List<Ticket> findByUtilisateur(Long id);
+
 
 }

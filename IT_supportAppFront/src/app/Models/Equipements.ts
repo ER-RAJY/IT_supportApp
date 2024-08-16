@@ -1,7 +1,6 @@
-export class Equipements {
-  equipementId : number = 0;
-  name  :string = '';
-  UrlImg : string = '';
-  description : string = '';
-  statut : string = '';
+export interface Equipements {
+  equipementId: number;
+  name: string;
+  description: string;
+  statut: 'DISPONIBLE' | 'NONDISPONIBLE';
 }

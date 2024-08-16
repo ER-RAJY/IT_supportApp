@@ -1,0 +1,70 @@
+<app-nav-bar></app-nav-bar>
+<app-side-bar></app-side-bar>
+<div class="sm:ml-64">
+
+  <div class="p-0  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <!-- Dashboard Section -->
+      <div class="p-6 bg-gray-50">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Equipment Faults</h1>
+
+        <!-- Button for adding a new Panne -->
+        <button (click)="showAddForm = !showAddForm" class="mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          {{ showAddForm ? 'Cancel' : 'Add Panne' }}
+        </button>
+
+        <!-- Form for adding a new Panne -->
+        <div *ngIf="showAddForm" class="mb-6">
+          <form (ngSubmit)="addPanne()" #panneForm="ngForm">
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-700">Pannes</label>
+              <input id="name" name="name" [(ngModel)]="newPanne.name" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm" />
+            </div>
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add</button>
+          </form>
+        </div>
+
+        <!-- Form for editing a Panne -->
+        <div *ngIf="showEditForm" class="mb-6">
+          <form (ngSubmit)="updatePanne()" #editPanneForm="ngForm">
+            <div class="mb-4">
+              <label for="editName" class="block text-sm font-medium text-gray-700">Pannes</label>
+              <input id="editName" name="editName" [(ngModel)]="editPanne.name" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm" />
+            </div>
+            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Update</button>
+          </form>
+        </div>
+
+
+        <!-- Display message if no pannes are available -->
+        <div *ngIf="pannes.length === 0" class="text-center text-gray-500 py-8">
+          <p class="text-lg">{{ errorMessage || 'No faults reported.' }}</p>
+        </div>
+
+        <!-- Table for displaying pannes -->
+        <div *ngIf="pannes.length > 0" class="overflow-x-auto shadow-lg rounded-lg">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead class="bg-gray-100 border-b border-gray-200">
+            <tr>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Panne ID</th>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Name</th>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let panne of pannes" class="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+              <td class="py-4 px-4 font-medium text-gray-700">{{ panne.panneId }}</td>
+              <td class="py-4 px-4 text-gray-600">{{ panne.name }}</td>
+              <td class="py-4 px-4 text-center">
+                <!-- Edit button -->
+                <button (click)="editPanneDetails(panne)" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                <!-- Delete button -->
+                <button (click)="deletePanne(panne.panneId)" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>

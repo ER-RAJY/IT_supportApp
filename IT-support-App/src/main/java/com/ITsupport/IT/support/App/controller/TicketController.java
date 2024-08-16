@@ -1,6 +1,7 @@
 package com.ITsupport.IT.support.App.controller;
 
 import com.ITsupport.IT.support.App.model.Ticket;
+import com.ITsupport.IT.support.App.model.enums.EquipmentStatut;
 import com.ITsupport.IT.support.App.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/auth/tickets")
+@CrossOrigin("*")
 public class TicketController {
 
     @Autowired
@@ -53,4 +55,6 @@ public class TicketController {
     public List<Ticket> findByUtilisateur(@PathVariable Long id) {
         return ticketService.findByUtilisateur(id);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.ITsupport.IT.support.App.service.Imlp;
 
 import com.ITsupport.IT.support.App.model.*;
+import com.ITsupport.IT.support.App.model.enums.EquipmentStatut;
 import com.ITsupport.IT.support.App.model.enums.EtatTicket;
 import com.ITsupport.IT.support.App.repository.PersonneRepository;
 import com.ITsupport.IT.support.App.repository.TicketRepository;
@@ -24,7 +25,7 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-    public Ticket addTeckit(Ticket ticket) {
+    public Ticket addTeckit(Ticket  ticket) {
         Utilisateur user = (Utilisateur) personneRepository.findById(ticket.getUtilisateur().getId())
                 .orElseThrow(() -> new RuntimeException("Utilisateur not found"));
         ticket.setUtilisateur(user);
@@ -88,5 +89,6 @@ public class TicketServiceImpl implements TicketService {
         List<Ticket> tickets = ticketRepository.findAllByUtilisateur(utilisateur);
         return tickets;
     }
+
 
 }

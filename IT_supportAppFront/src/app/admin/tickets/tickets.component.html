@@ -1,0 +1,102 @@
+<app-nav-bar></app-nav-bar>
+<app-side-bar></app-side-bar>
+<div class="sm:ml-64">
+  <div class="p-4  border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <!-- Tickets Section -->
+    <div class="tickets">
+      <div class="p-6 bg-gray-50">
+        <h1 class="text-3xl font-bold mb-6 text-gray-800">Tickets</h1>
+
+        <!-- Button to show/hide add form -->
+        <button (click)="showAddForm = !showAddForm" class="mb-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+          {{ showAddForm ? 'Cancel' : 'Add Ticket' }}
+        </button>
+
+        <!-- Add Ticket Form -->
+        <div *ngIf="showAddForm" class="mb-6">
+          <form (ngSubmit)="addTicket()" #addTicketForm="ngForm">
+            <div class="mb-4">
+              <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+              <textarea id="description" name="description" [(ngModel)]="newTicket.description" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label for="statut" class="block text-sm font-medium text-gray-700">Status</label>
+              <select id="statut" name="statut" [(ngModel)]="newTicket.statut" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm">
+                <option value="OPEN">Open</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="CLOSED">Closed</option>
+              </select>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Add</button>
+            <p *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</p>
+          </form>
+        </div>
+
+        <!-- Edit Ticket Form -->
+        <div *ngIf="showEditForm" class="mb-6">
+          <form (ngSubmit)="updateTicket()" #editTicketForm="ngForm">
+            <div class="mb-4">
+              <label for="editDescription" class="block text-sm font-medium text-gray-700">Description</label>
+              <textarea id="editDescription" name="description" [(ngModel)]="editTicket.description" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm"></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label for="editStatut" class="block text-sm font-medium text-gray-700">Status</label>
+              <select id="editStatut" name="statut" [(ngModel)]="editTicket.statut" required class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm">
+                <option value="OPEN">Open</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="CLOSED">Closed</option>
+              </select>
+            </div>
+
+            <button type="submit" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Update</button>
+            <p *ngIf="errorMessage" class="text-red-500 mt-4">{{ errorMessage }}</p>
+          </form>
+        </div>
+
+        <!-- Display message if no tickets are available -->
+        <div *ngIf="tickets.length === 0" class="text-center text-gray-500 py-8">
+          <p class="text-lg">{{ errorMessage || 'No tickets available.' }}</p>
+        </div>
+
+        <!-- Table for displaying tickets -->
+        <div *ngIf="tickets.length > 0" class="overflow-x-auto shadow-lg rounded-lg">
+          <table class="min-w-full bg-white border border-gray-200">
+            <thead class="bg-gray-100 border-b border-gray-200">
+            <tr>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Description</th>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Status</th>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Created On</th>
+              <th class="py-3 px-4 text-left text-sm font-semibold text-gray-600">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ticket of tickets" class="border-b border-gray-200 hover:bg-gray-50 transition-colors duration-200">
+              <td class="py-4 px-4 font-medium text-gray-700">{{ ticket.description }}</td>
+              <td class="py-4 px-4 text-center">
+                  <span class="px-3 py-1 text-sm font-semibold rounded-full"
+                        [ngClass]="{
+                          'bg-green-100 text-green-800': ticket.statut === 'OPEN',
+                          'bg-yellow-100 text-yellow-800': ticket.statut === 'IN_PROGRESS',
+                          'bg-red-100 text-red-800': ticket.statut === 'CLOSED'
+                        }">
+                    {{ ticket.statut }}
+                  </span>
+              </td>
+              <td class="py-4 px-4 text-gray-600">{{ ticket.dateCreationTicket | date }}</td>
+              <td class="py-4 px-4 text-center">
+                <!-- Edit button -->
+                <button (click)="editTicketDetails(ticket)" class="bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600">Edit</button>
+                <!-- Delete button -->
+                <button  class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 ml-2">Delete</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

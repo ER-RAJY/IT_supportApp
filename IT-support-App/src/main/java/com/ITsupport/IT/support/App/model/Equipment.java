@@ -20,7 +20,6 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long equipementId;
     private String name;
-    private String UrlImg;
     private String description;
     @Enumerated(EnumType.STRING)
     private EquipmentStatut statut;

@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {JwtService} from "./service/jwt-service";
+import {Role} from "./Models/enum/Role";
+import {AuthService} from "./service/auth.service";
 
 @Component({
   selector: 'app-root',
@@ -10,22 +12,11 @@ import {JwtService} from "./service/jwt-service";
 export class AppComponent implements OnInit{
 
   title = 'IT_supportAppFront';
-  admin : boolean = false;
-  constructor(
-    private router:Router, private service: JwtService ) {}
 
   ngOnInit(): void {
-    this.checkpath();
-    this.router.events.subscribe(() => this.checkpath());
+    document.documentElement.classList.add('dark');
   }
 
-  protected checkpath() {
-    const url = this.router.url;
-    this.admin = url.startsWith('/admin');
-  }
 
-  logout(){
-    this.service.logout();
-    this.router.navigate(['login']);
-  }
+
 }

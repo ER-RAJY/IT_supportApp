@@ -28,7 +28,6 @@ public class EquipmentServiceIpml implements EquipmentService {
         Equipment editEquipment = new Equipment();
         editEquipment.setEquipementId(id);
         editEquipment.setName(equipment.getName());
-        editEquipment.setUrlImg(equipment.getUrlImg());
         editEquipment.setDescription(equipment.getDescription());
         editEquipment.setStatut(equipment.getStatut());
 
